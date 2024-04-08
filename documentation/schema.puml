@@ -1,18 +1,36 @@
 @startuml
 
-class Produit {
-    - reference: String
+class Produits {
+    - nom : String
+    - reference_fk: Integer
+    - distributeur_fk: Integer
+    - categories_fk : Integer
 }
 
-class Distributeur {
+class Distributeurs {
     - nom: String
 }
 
-class Categorie {
+class References {
     - nom: String
 }
 
-Produit "1" --> "0..*" Distributeur
-Produit "1" --> "0..*" Categorie
+class Categories {
+    - nom: String
+}
+
+class User {
+    - firstName: String
+    - lastName: String
+    - email: String
+    - password: String
+    - picture: String
+}
+
+User "1..*" --> "0..*" Produits
+Produits "1" --> "0..*" Categories
+Produits "1..*" --> "0..*" Distributeurs
+Produits "1" --> "1" References
+
 
 @enduml
