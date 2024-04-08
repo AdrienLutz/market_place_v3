@@ -1,0 +1,18 @@
+@startuml
+
+class Produit {
+    - reference: String
+}
+
+class Distributeur {
+    - nom: String
+}
+
+class Categorie {
+    - nom: String
+}
+
+Produit "1" --> "0..*" Distributeur
+Produit "1" --> "0..*" Categorie
+
+@enduml
