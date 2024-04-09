@@ -17,6 +17,22 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\HasLifecycleCallbacks]
 class Produits
 {
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(){
+    // à la création d'un nouveau produit
+    // => une date non modifiable courante est générée
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue(){
+    // à la maj d'un nouveau produit
+    // => une date non modifiable courante est générée
+        $this->updatedAt = new \DateTimeImmutable();
+    }
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -40,22 +56,31 @@ class Produits
     private Collection $distributeur_fk;
 
 
-    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'produits')]
+//    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'produits')]
+//    private ?Categories $categorie_fk = null;
+
+    #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categories $categorie_fk = null;
 
 //    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'produits')]
 //    #[ORM\JoinColumn(nullable: false)]
 //    private ?self $categorie_fk = null;
 //
-//    /**
-//     * @var Collection<int, self>
-//     */
-//    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'categorie_fk')]
-//    private Collection $produits;
+    /**
+     * @var Collection<int, self>
+     */
+    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'categorie_fk')]
+    private Collection $produits;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user_fk = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
 
     public function __construct()
     {
@@ -116,14 +141,26 @@ class Produits
         return $this;
     }
 
-    public function getCategorieFk(): ?self
+//    public function getCategorieFk(): ?self
+//    {
+//        return $this->categorie_fk;
+//    }
+//
+//    public function setCategorieFk(?self $categorie_fk): static
+//    {
+//        $this->categorie_fk = $categorie_fk;
+//
+//        return $this;
+//    }
+
+    public function getCategorieFk(): ?Categories
     {
         return $this->categorie_fk;
     }
 
-    public function setCategorieFk(?self $categorie_fk): static
+    public function setCategorieFk(?Categories $categorie): self
     {
-        $this->categorie_fk = $categorie_fk;
+        $this->categorie_fk = $categorie;
 
         return $this;
     }
@@ -166,6 +203,30 @@ class Produits
     public function setUserFk(?User $user_fk): static
     {
         $this->user_fk = $user_fk;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
