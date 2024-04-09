@@ -21,8 +21,8 @@ class CategoriesCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            TextField::new('name', 'catégorie'),
-            AssociationField::new('produits')->autocomplete(),
+            TextField::new('name', 'Nom de la catégorie'),
+//            AssociationField::new('produits')->autocomplete(),
         ];
     }
 
