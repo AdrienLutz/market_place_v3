@@ -6,22 +6,26 @@ use Faker;
 use App\Entity\Produits;
 use App\Entity\Categories;
 use App\Entity\References;
+use App\Entity\User;
 use App\Entity\Distributeurs;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
+use Faker\Factory;
+
+//use Doctrine\DBAL\Driver\IBMDB2\Exception\Factory;
 
 class AppFixtures extends Fixture
 {
 
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create('fr_FR');
+        $faker = Factory::create('fr_FR');
 
         $produits = [];
         $categories = [];
         $distributeurs = [];
         $references = [];
+        $users = [];
 
         for ($i = 0; $i < 30; $i++) {
             $reference = new References();
@@ -29,6 +33,18 @@ class AppFixtures extends Fixture
             $references[] = $reference;
             $manager->persist($reference);
         }
+        for ($i = 0; $i < 30; $i++) {
+            $user = new User();
+            $user->setEmail('user'.$i.'@mail.fr');
+            $user->setPassword('azerty');
+            $user->setRoles(['ROLE_USER']);
+            $user->setfirstName('firstName'.$i);
+            $user->setlastName('lastName'.$i);
+            $user->setVerified(true);
+            $users[] = $user;
+            $manager->persist($user);
+        }
+
 
         for ($i = 0; $i < 30; $i++) {
             $categorie = new Categories();
@@ -48,15 +64,9 @@ class AppFixtures extends Fixture
 
             $produit = new Produits();
             $produit->setName($faker->word);
-//            $produit->setDescription($faker->text($maxNbChars = 200));
-//            $produit->setImage('https://picsum.photos/200');
-//            $produit->setPrice(mt_rand(1, 2000));
-//            $produit->setSlug($produit->getName());
-
-
 
             for ($c = 0; $c < count($categories); $c++) {
-                $produit->setCategorieFk($faker->randomElement($categorie));
+                $produit->setCategorieFk($faker->randomElement($categories));
             }
 
             for ($d = 0; $d < count($distributeurs); $d++) {
@@ -67,6 +77,10 @@ class AppFixtures extends Fixture
                 $produit->setReferenceFk($references[$i]);
             }
 
+            for ($u = 0; $u < count($users); $u++) {
+                $produit->setUserFk($users[$i]);
+            }
+
             $produits[] = $produit;
             $manager->persist($produit);
 
@@ -74,9 +88,9 @@ class AppFixtures extends Fixture
 
 
 
-        // $product = new Product();
-        // $manager->persist($product);
+//         $product = new Product();
+//         $manager->persist($product);
 
-        $manager->flush();
+         $manager->flush();
     }
 }

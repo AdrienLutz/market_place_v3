@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         $User->setFirstname("User");
         $User->setLastname("User");
         $User->setRoles(["ROLE_USER"]);
+        $User->setVerified(true);
         $encodedPassword = $this->hasher->hashPassword($User, "user");
         $User->setPassword($encodedPassword);
 
@@ -32,6 +33,7 @@ class UserFixtures extends Fixture
         $Admin->setFirstname("Admin");
         $Admin->setlastname("Admin");
         $Admin->setRoles(["ROLE_ADMIN"]);
+        $Admin->setVerified(true);
         $encodedPassword = $this->hasher->hashPassword($Admin, "admin");
         $Admin->setPassword($encodedPassword);
 

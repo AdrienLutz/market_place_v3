@@ -22,10 +22,8 @@ class Categories
      * @var Collection<int, Produits>
      */
 
-//   ajout pour bug d'ajout dans l'admin (pas de lien avec produit)
     #[ORM\OneToMany(targetEntity: Produits::class, mappedBy: 'categorie_fk')]
     private Collection $produits;
-//    __________
 
     public function __construct()
     {
@@ -72,6 +70,10 @@ class Categories
         }
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this -> name;
     }
 //    _________________________
 }

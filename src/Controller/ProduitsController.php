@@ -25,7 +25,7 @@ class ProduitsController extends AbstractController
         return $this->render('produits/afficher_produits.html.twig', [
             //filter les produits par utilisateur
             "produits" => $produitsRepository-> findBy(['user_fk'=> $user]),
-            "categorie" => $categoriesRepository ->findAll(),
+            "categories" => $categoriesRepository ->findAll(),
             "distributeurs" => $distributeursRepository -> findAll(),
         ]);
     }

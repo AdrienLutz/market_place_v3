@@ -1,7 +1,5 @@
 <?php
 
-//TODO : à reprendre
-
 namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -14,11 +12,9 @@ class LoginSuccesEventSubscriber implements EventSubscriberInterface
     //Appel du service Mailer
     private MailerInterface $mailer;
 
-    public function __construct(MailerInterface $mailer)
-    {
+    public function __construct(MailerInterface $mailer){
         $this->mailer = $mailer;
     }
-
     //Cette methode envoie un email a l'utilsateur quand il ce connecte
     public function onLoginSuccessEvent(LoginSuccessEvent $event): void
     {
@@ -27,7 +23,7 @@ class LoginSuccesEventSubscriber implements EventSubscriberInterface
         //Envoyer un email a a l'utilisateur lorsqu'il se connecte
         $mail = (new Email())
             ->to($user->getEmail())
-            ->from("admin@admin.com")
+            ->from("admin@admin.fr")
             ->subject("Connexion utilisateur")
             ->text("Connexion au site Symfony 7 E-commerce : ");
         $this->mailer->send($mail);

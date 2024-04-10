@@ -56,21 +56,9 @@ class Produits
     private Collection $distributeur_fk;
 
 
-//    #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'produits')]
-//    private ?Categories $categorie_fk = null;
-
     #[ORM\ManyToOne(inversedBy: 'produits')]
     private ?Categories $categorie_fk = null;
 
-//    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'produits')]
-//    #[ORM\JoinColumn(nullable: false)]
-//    private ?self $categorie_fk = null;
-//
-    /**
-     * @var Collection<int, self>
-     */
-    #[ORM\OneToMany(targetEntity: self::class, mappedBy: 'categorie_fk')]
-    private Collection $produits;
 
     #[ORM\ManyToOne(inversedBy: 'produits')]
     #[ORM\JoinColumn(nullable: false)]
@@ -229,5 +217,9 @@ class Produits
         $this->createdAt = $createdAt;
 
         return $this;
+    }
+
+    public function __toString(){
+        return $this -> name;
     }
 }

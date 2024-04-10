@@ -6,19 +6,19 @@
     <h1>Liste des produits</h1>
     <ul>
         {% for produit in produits %}
-            <li>{{ produit.nom }} - {{ produit.prix }} €</li>
+            <li>{{ produit.name }} </li>
             <ul>
                 {% for categorie in categories %}
-                    {% if produit.categorie_id == categorie.id %}
-                        <li>Catégorie: {{ categorie.nom }}</li>
-                    {% endif %}
+{#                    {% if produit.categorie_id == categorie.id %}#}
+                        <li>Catégorie: {{ categorie.name }}</li>
+{#                    {% endif %}#}
                 {% endfor %}
             </ul>
             <ul>
                 {% for distributeur in distributeurs %}
-                    {% if produit.distributeur_id == distributeur.id %}
-                        <li>Distributeur: {{ distributeur.nom }}</li>
-                    {% endif %}
+{#                    {% if produit.distributeur_id == distributeur.id %}#}
+                        <li>Distributeur: {{ distributeur.name }}</li>
+{#                    {% endif %}#}
                 {% endfor %}
             </ul>
         {% endfor %}
