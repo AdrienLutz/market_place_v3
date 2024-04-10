@@ -48,14 +48,14 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 30; $i++) {
             $categorie = new Categories();
-            $categorie->setName($faker->word);
+            $categorie->setName('CAT_' . mt_rand(1, 9999));
             $categories[] = $categorie;
             $manager->persist($categorie);
         }
 
         for ($i = 0; $i < 30; $i++) {
             $distributeur = new Distributeurs();
-            $distributeur->setName($faker->word);
+            $distributeur->setName('DISTRIB_' . mt_rand(1, 9999));
             $distributeurs[] = $distributeur;
             $manager->persist($distributeur);
         }
