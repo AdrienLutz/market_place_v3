@@ -70,6 +70,12 @@ class Produits
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column]
+    private ?float $price = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->distributeur_fk = new ArrayCollection();
@@ -129,17 +135,6 @@ class Produits
         return $this;
     }
 
-//    public function getCategorieFk(): ?self
-//    {
-//        return $this->categorie_fk;
-//    }
-//
-//    public function setCategorieFk(?self $categorie_fk): static
-//    {
-//        $this->categorie_fk = $categorie_fk;
-//
-//        return $this;
-//    }
 
     public function getCategorieFk(): ?Categories
     {
@@ -221,5 +216,29 @@ class Produits
 
     public function __toString(){
         return $this -> name;
+    }
+
+    public function getPrice(): ?float
+    {
+        return $this->price;
+    }
+
+    public function setPrice(float $price): static
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): static
+    {
+        $this->image = $image;
+
+        return $this;
     }
 }

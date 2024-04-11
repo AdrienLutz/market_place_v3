@@ -21,7 +21,7 @@ class ReferencesCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
-            TextField::new('name', 'Référence'),
+            TextField::new('name', 'Référence (referencecrudcontroller)'),
 //            AssociationField::new('produits')->autocomplete(),
         ];
     }

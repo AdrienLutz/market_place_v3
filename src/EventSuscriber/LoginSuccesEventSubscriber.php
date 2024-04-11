@@ -1,6 +1,8 @@
 <?php
 
-namespace App\EventSubscriber;
+// TODO : à reprendre car cause des bugs
+
+namespace App\src\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;

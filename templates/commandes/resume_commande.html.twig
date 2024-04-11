@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<h2 class="text-center text-success">Détails de votre commande</h2>
+{% for commande in app.user.commdes %}
+    <div class="container bg-white shadow p-3 mt-3 rounded">
+        <p class="text-success"> Reference de la commande : {{  commande.numeroCmd }} </p>
+        <p class="text-danger"> Votre email : {{  commande.user.email }} </p>
+        <p class="text-info"> VDate de la commande: {{  commande.createdAt | date('d/m/y') }} </p>
+    </div>
+{% endfor %}
+    <div>
+        <h3> Vos produits commandés </h3>
+        {% for details in details_commande %}
+        <div class="col-md-3 col-sm-12">
+            <h4 class="text-info"> {{ details.produits.name }} </h4>
+            // TODO : image[0] ou photos[0] ??
+            <img class="img-fluid mt-2" src="{{ asset('public/images/' ~ details.produit.image[0].name) }}" width="25%" alt="{{ details.produits.name}}" title="{{ details.produits.name}}" >
+            <div class="text-info"> Quantité(s) : {{  details.quantite }} </div>
+            <h5 class="text-success mt-3"> Prix : {{  details.prix }} € </h5>
+        </div>
+        {%  endfor %}
+        // TODO : reprendre le pdf sur stripe et finaliser la partie commande/paiement
+        <a href="" class="btn btn-primary"> Payer la commande</a>
+    </div>
+{% endblock %}

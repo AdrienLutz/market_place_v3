@@ -24,7 +24,8 @@ class ProduitsCrudController extends AbstractCrudController
         return [
             IdField::new('id')->onlyOnIndex(),
             TextField::new('name', 'Nom du produit'),
-            AssociationField::new('reference_fk', 'Référence')->autocomplete()->renderAsEmbeddedForm(
+            // TODO : double affichage du label
+            AssociationField::new('reference_fk', 'Référence Association field du produitcrudcontroller')->autocomplete()->renderAsEmbeddedForm(
                 ReferencesCrudController::class,'ajouter une ref'
             ),
 //            ajout du formulaire imbriqué juste au dessus (un input appele le refcrudcontroler qui permet de créer une nouvelle ref pour echapper au onetoone
