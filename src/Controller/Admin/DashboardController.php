@@ -37,7 +37,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Produits', 'fa brands fa-product-hunt', Produits::class);
         yield MenuItem::linkToCrud('Références', 'fas fa-calculator', References::class);
         // les ROLE_USER ne peuvent voir que les produits et les références
-//        if ($this->isGranted("ROLE_ADMIN)"))
+        if ($this->isGranted("ROLE_ADMIN)"))
         yield MenuItem::linkToCrud('Categories', 'fas fa-paperclip', Categories::class);
         yield MenuItem::linkToCrud('Distributeurs', 'fas fa-file', Distributeurs::class);
         yield MenuItem::linkToCrud('Utilisateurs', 'fa-solid fa-user', User::class);
