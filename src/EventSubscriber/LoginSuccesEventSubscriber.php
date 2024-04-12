@@ -2,7 +2,7 @@
 
 // TODO : à reprendre car cause des bugs
 
-namespace App\src\EventSubscriber;
+namespace App\EventSubscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Mailer\MailerInterface;
