@@ -129,7 +129,7 @@ class PanierController extends AbstractController
         return $this->redirectToRoute('app_afficher_panier');
     }
 
-    #[Route('/vider_panier/', 'app_vider_produit_panier')]
+    #[Route('/vider_panier/', 'app_vider_panier')]
     public function viderPanier(SessionInterface $session):Response
     {
         $session->remove('panier');

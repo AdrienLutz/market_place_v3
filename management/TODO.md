@@ -8,6 +8,12 @@
 
 -----------------------------------------
 
+### ProduitsController
+
+// TODO : les références doivent être autoincrementées sinon contraintes d'unicité
+
+-----------------------------------------
+
 ### LoginSuccessEventSuscriber.php
 
 // TODO : à reprendre car cause des bugs

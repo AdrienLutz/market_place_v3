@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 
 class ProduitsCrudController extends AbstractCrudController
 {
@@ -23,6 +24,7 @@ class ProduitsCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->onlyOnIndex(),
+            MoneyField::new('price', 'Prix')->setCurrency('EUR'),
             TextField::new('name', 'Nom du produit'),
             // TODO : double affichage du label
             AssociationField::new('reference_fk', 'Référence Association field du produitcrudcontroller')->autocomplete()->renderAsEmbeddedForm(

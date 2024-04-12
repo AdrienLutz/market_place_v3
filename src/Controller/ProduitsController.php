@@ -48,6 +48,7 @@ class ProduitsController extends AbstractController
     #[Route('/new', name: 'app_produits_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        // TODO : les références doivent être autoincrementées sinon contraintes d'unicité
         $produit = new Produits();
         $form = $this->createForm(ProduitsType::class, $produit);
         $form->handleRequest($request);

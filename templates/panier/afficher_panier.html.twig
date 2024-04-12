@@ -26,16 +26,17 @@
             {% for commande in panier %}
                 <tr>
                     <td>{{ commande.produit.name }}</td>
-                    <td>{{ commande.produit.categorie.name }}</td>
+                    <td>{{ commande.produit.categorieFK.name }}</td>
                     <td>
-                        <div class="d-flex justify-content-center">
-                            // TODO : image[0] ou photos[0] ??
-                            <img src="{{ asset('public/images/' ~ commande.produit.image[0].name) }}" width="25%" alt="image d'un produit pour le systeme de panier" class="img-fluid mt-2">
-                        </div>
+{#                        <div class="d-flex justify-content-center">#}
+{#                            // TODO : image[0] ou photos[0] ??#}
+{#                            <img src="{{ asset('public/images/' ~ commande.produit.image[0].name) }}" width="25%" alt="image d'un produit pour le systeme de panier" class="img-fluid mt-2">#}
+{#                        </div>#}
                     </td>
-                    <td>{{ commande.produit.descritpion|raw }}</td>
+                    <td></td>
+{#                    <td>{{ commande.produit.descritpion|raw }}</td>#}
                     <td>{{ commande.produit.price }} €</td>
-                    <td>{{ commande.quantite }} €</td>
+                    <td>{{ commande.quantite }} unité(s)</td>
                     <td>{{ commande.quantite * commande.produit.price  }} €</td>
                     <td>
                         <a href="{{ path('app_supprimer_quantite_panier', {id: commande.produit.id}) }}" class="btn btn-warning">-</a>
@@ -56,7 +57,7 @@
         </table>
     </div>
     <h3 class="text-success">Total de la commande : {{ total }}</h3>
-    <a href="{{ path('app_vider_panier'}}" class="btn btn-primary">Vider le panier</a>
+    <a href="{{ path('app_vider_panier')}}" class="btn btn-primary">Vider le panier</a>
     <hr>
     <a href="{{ ('app_valider_commander') }}" class="btn btn-success">Valider la commande</a>
     <hr>

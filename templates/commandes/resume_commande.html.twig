@@ -5,7 +5,7 @@
     <div class="container bg-white shadow p-3 mt-3 rounded">
         <p class="text-success"> Reference de la commande : {{  commande.numeroCmd }} </p>
         <p class="text-danger"> Votre email : {{  commande.user.email }} </p>
-        <p class="text-info"> VDate de la commande: {{  commande.createdAt | date('d/m/y') }} </p>
+        <p class="text-info"> Date de la commande: {{  commande.createdAt | date('d/m/y') }} </p>
     </div>
 {% endfor %}
     <div>
